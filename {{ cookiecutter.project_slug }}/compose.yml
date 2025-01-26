@@ -1,0 +1,43 @@
+services:
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_PASSWORD: example
+  #     POSTGRES_USER: root
+  #     POSTGRES_DB: dev
+  #   # ports:
+  #   #   - {{ cookiecutter.ports.db }}:5432
+  #   networks:
+  #     - {{ cookiecutter.project_slug }}
+
+  be:
+    build:
+      context: ./services/be
+      dockerfile: Dockerfile
+    # environment:
+    #   MONGODB_URL: "mongodb://root:example@db:5432/dev?authSource=admin&retryWrites=true&w=majority"
+    volumes:
+      - ./services/be:/src
+    ports:
+      - {{ cookiecutter.ports.be }}:5000
+    # depends_on:
+    #   - db
+    networks:
+      - {{ cookiecutter.project_slug }}
+  fe:
+    build:
+      context: ./services/fe
+      dockerfile: Dockerfile
+    volumes:
+      - ./services/fe:/app
+    ports:
+      - {{ cookiecutter.ports.fe }}:3000
+    depends_on:
+      - be
+    networks:
+      - {{ cookiecutter.project_slug }}
+
+networks:
+  inventarr:
+    driver: bridge

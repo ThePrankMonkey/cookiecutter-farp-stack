@@ -1,0 +1,15 @@
+{
+    "project_name": "Test Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "project_description": "Enter a desciption.",
+    "author": "Matthew Hellmer <theprankmonkey@gmail.com>",
+    "ports": {
+        "be": 3201,
+        "db": 4201,
+        "fe": 5201
+    },
+    "models": [
+        "modela",
+        "modelb"
+    ]
+}
