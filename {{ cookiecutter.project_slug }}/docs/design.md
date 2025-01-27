@@ -7,7 +7,7 @@ Describe why this project exists
 ## Requirements
 
 - Database
-  {% for model in cookiecutter.models %}
+  {% for model in cookiecutter.models.list %}
   - {{ model|title }}
     {% endfor %}
 - Frontend

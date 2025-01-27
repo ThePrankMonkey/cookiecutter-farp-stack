@@ -8,8 +8,10 @@
         "db": 4201,
         "fe": 5201
     },
-    "models": [
-        "modela",
-        "modelb"
-    ]
+    "models": {
+        "list": [
+            "modela",
+            "modelb"
+        ]
+    }
 }

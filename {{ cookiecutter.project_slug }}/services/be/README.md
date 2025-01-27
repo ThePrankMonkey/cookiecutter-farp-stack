@@ -15,7 +15,7 @@ docker compose exec be poetry run <TBD>
 ### Create an entry
 
 ```bash
-{% for model in cookiecutter.models %}
+{% for model in cookiecutter.models.list %}
 http POST http://127.0.0.1:{{ ports.be }}/{{ model }}s
 {% endfor %}
 ```
@@ -23,7 +23,7 @@ http POST http://127.0.0.1:{{ ports.be }}/{{ model }}s
 ### Check the test data
 
 ```bash
-{% for model in cookiecutter.models %}
+{% for model in cookiecutter.models.list %}
 http GET http://127.0.0.1:{{ ports.be }}/{{ model }}s/1
 {% endfor %}
 ```
@@ -31,7 +31,7 @@ http GET http://127.0.0.1:{{ ports.be }}/{{ model }}s/1
 ### Delete Items
 
 ```bash
-{% for model in cookiecutter.models %}
+{% for model in cookiecutter.models.list %}
 http DELETE http://127.0.0.1:{{ ports.be }}/{{ model }}s/1
 {% endfor %}
 ```

@@ -4,7 +4,7 @@ docker compose exec be poetry run app/helpers/load_test_data.py
 
 from sqlmodel import Session
 from app.db import engine, create_db_and_tables, dump_db_and_tables
-{% for model in cookiecutter.models %}
+{% for model in cookiecutter.models.list %}
 from app.models.{{ model }}.model import {{ model|title }}
 {% endfor %}
 
@@ -18,10 +18,10 @@ def add_and_commit(obj):
 
 
 def create_demo_data():
-    {% for model in cookiecutter.models %}
+    {% for model in cookiecutter.models.list %}
     test_data_{{ loop.index }} = add_and_commit(
         {{ model|title }}(
-            name="Sample",
+            name="Sample {{ model|title }}",
         )
     )
     {% endfor %}

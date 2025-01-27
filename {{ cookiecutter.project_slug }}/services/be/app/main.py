@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.db import create_db_and_tables
 from app.helpers.load_test_data import reset_db
-{% for model in cookiecutter.models %}
+{% for model in cookiecutter.models.list %}
 from app.models.{{ model }}.route import router as {{ model }}_router
 {% endfor %}
 
@@ -33,7 +33,7 @@ app = FastAPI(
         }
     ],
 )
-{% for model in cookiecutter.models %}
+{% for model in cookiecutter.models.list %}
 app.include_router({{ model }}_router)
 {% endfor %}
 
